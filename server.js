@@ -24,11 +24,9 @@ app.use("/api/vi/admin", require("./routes/adminRoutews.js"));
 app.use("/api/vi/doctor", require("./routes/doctorRoutes.js"));
 // Static file
 app.use(express.static(path.join(__dirname, "./client/build")));
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build"));
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
 const port = process.env.PORT || 8080;
