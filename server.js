@@ -17,9 +17,6 @@ app.use(morgon());
 app.use(cors());
 
 // Routes
-app.get("/", (req, res) => {
-  res.status(200).send({ msg: "Routes are Working" });
-});
 
 // user routes
 app.use("/api/vi/user", require("./routes/userRoutes.js"));
@@ -27,7 +24,9 @@ app.use("/api/vi/admin", require("./routes/adminRoutews.js"));
 app.use("/api/vi/doctor", require("./routes/doctorRoutes.js"));
 // Static file
 app.use(express.static(path.join(__dirname, "./client/build")));
-
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build"));
 });
